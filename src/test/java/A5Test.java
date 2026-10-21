@@ -25,7 +25,7 @@ class A5Test {
         Logic logic = new Logic();
         assertEquals(0.35006, logic.logic1a0(0, 1.1, 9), 0.000005);
         assertEquals(0.36757, logic.logic1a0(0, 1.1812, 10), 0.000005);
-        assertEquals(0.45, logic.logic1a0(0, 2.50, 0), 0.000005);
+        assertEquals(0.49500, logic.logic1a0(0, 2.750, 30), 0.000005);
     }
 
     @Test
