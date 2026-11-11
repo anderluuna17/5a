@@ -12,7 +12,7 @@ JAR="target/${NAME}-${VERSION}.jar"
 prueba() {
     SALIDA=$(java -jar "$JAR" "$1" "$2")
     ACTUAL=$(echo "$SALIDA" | grep -Eo '[0-9]+\.[0-9]+' | tail -1)
-    echo "x=$1 dof=$2 esperado=$3 
+    echo "x=$1 dof=$2 esperado=$3 "
 }
 
 prueba 1.1    9  0.35006
