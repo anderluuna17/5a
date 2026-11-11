@@ -15,6 +15,6 @@ prueba() {
     echo "p=$1 dof=$2 xo=$3 Actual=$x"
 }
 
-prueba 0.20    6  0.055338
-prueba 0.45 15 1.75305
+prueba 0.20   6  0.055338
+prueba 0.45  15 1.75305
 prueba 0.495  4 4.60409
