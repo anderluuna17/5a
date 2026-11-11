@@ -13,5 +13,32 @@ public class Logic {
 <span class="fc" id="L13">        output.writeData(&quot;output/output5.txt&quot;, String.format(Locale.US, &quot;%.5f&quot;, result));</span>
 <span class="fc" id="L14">        return result;</span>
     }
+
+
+    public double findX(double p, int degreesOfFreedom) {
+<span class="fc bfc" id="L19" title="All 6 branches covered.">    if (!Double.isFinite(p) || p &lt; 0 || p &gt;= 0.5) {</span>
+<span class="fc" id="L20">        throw new IllegalArgumentException(&quot;P debe estar entre 0 y 0.5.&quot;);</span>
+    }
+
+<span class="fc" id="L23">    double low = 0;</span>
+<span class="fc" id="L24">    double high = 1;</span>
+
+<span class="fc bfc" id="L26" title="All 2 branches covered.">    while (integration.integrate(0, high, degreesOfFreedom) &lt; p) {</span>
+<span class="fc" id="L27">        high *= 2;</span>
+    }
+
+<span class="fc bfc" id="L30" title="All 2 branches covered.">    while (high - low &gt; 0.00001) {</span>
+<span class="fc" id="L31">        double mid = (low + high) / 2;</span>
+<span class="fc" id="L32">        double area = integration.integrate(0, mid, degreesOfFreedom);</span>
+
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (area &lt; p) {</span>
+<span class="fc" id="L35">            low = mid;</span>
+<span class="fc" id="L36">        } else {</span>
+<span class="fc" id="L37">            high = mid;</span>
+        }
+    }
+
+<span class="fc" id="L41">    return (low + high) / 2;</span>
+}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
