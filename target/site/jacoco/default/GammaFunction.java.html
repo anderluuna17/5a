@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GammaFunction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">5a-simpson</a> &gt; <a href="index.source.html" class="el_package">default</a> &gt; <span class="el_source">GammaFunction.java</span></div><h1>GammaFunction.java</h1><pre class="source lang-java linenums"><span class="fc" id="L1">public class GammaFunction {</span>
+<span class="fc" id="L2">    private static final double[] COEFFICIENTS = {676.5203681218851, -1259.1392167224028, 771.3234287776531, -176.6150291621406, 12.507343278686905, -0.13857109526572012, 9.984369578019572E-6, 1.5056327351493116E-7};</span>
+
+    public double computeIntGamma(int intValue) {
+<span class="fc bfc" id="L5" title="All 2 branches covered.">        if (intValue &lt;= 0) throw new IllegalArgumentException(&quot;El argumento de gamma debe ser positivo.&quot;);</span>
+<span class="fc" id="L6">        return computeDblGamma(intValue);</span>
+    }
+
+    public double computeDblGamma(double doubleValue) {
+<span class="fc bfc" id="L10" title="All 4 branches covered.">        if (!Double.isFinite(doubleValue) || doubleValue &lt;= 0) throw new IllegalArgumentException(&quot;El argumento de gamma debe ser positivo y finito.&quot;);</span>
+<span class="fc bfc" id="L11" title="All 2 branches covered.">        if (doubleValue &lt; 0.5) return Math.PI / (Math.sin(Math.PI * doubleValue) * computeDblGamma(1 - doubleValue));</span>
+<span class="fc" id="L12">        double z = doubleValue - 1;</span>
+<span class="fc" id="L13">        double sum = 0.99999999999980993;</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">        for (int i = 0; i &lt; COEFFICIENTS.length; i++) sum += COEFFICIENTS[i] / (z + i + 1);</span>
+<span class="fc" id="L15">        double t = z + COEFFICIENTS.length - 0.5;</span>
+<span class="fc" id="L16">        return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * sum;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>

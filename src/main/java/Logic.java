@@ -13,4 +13,31 @@ public class Logic {
         output.writeData("output/output5.txt", String.format(Locale.US, "%.5f", result));
         return result;
     }
+
+
+    public double findX(double p, int degreesOfFreedom) {
+    if (!Double.isFinite(p) || p < 0 || p >= 0.5) {
+        throw new IllegalArgumentException("P debe estar entre 0 y 0.5.");
+    }
+
+    double low = 0;
+    double high = 1;
+
+    while (integration.integrate(0, high, degreesOfFreedom) < p) {
+        high *= 2;
+    }
+
+    while (high - low > 0.00001) {
+        double mid = (low + high) / 2;
+        double area = integration.integrate(0, mid, degreesOfFreedom);
+
+        if (area < p) {
+            low = mid;
+        } else {
+            high = mid;
+        }
+    }
+
+    return (low + high) / 2;
+}
 }
